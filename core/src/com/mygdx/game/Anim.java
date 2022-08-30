@@ -3,17 +3,19 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import sun.jvm.hotspot.gc.g1.G1CollectedHeap;
 
 public class Anim {
-    private Texture img;
+    /*private Texture img;*/
+    private TextureAtlas atlas;
     private Animation<TextureRegion> anm;
     private float time;
 
 
     public Anim(String name, int col, int row, Animation.PlayMode playMode) {
-        img = new Texture(name);
+        /*img = new Texture(name);
         TextureRegion region0 = new TextureRegion(img);
         int xCnt = region0.getRegionWidth() / col;
         int yCnt = region0.getRegionHeight() / row;
@@ -28,8 +30,11 @@ public class Anim {
 
             }
 
-        }
-        anm = new com.badlogic.gdx.graphics.g2d.Animation<TextureRegion>(1 / 15f, region1);
+        }*/
+
+        atlas = new TextureAtlas("atlas/unnamed2.atlas");
+        anm = new com.badlogic.gdx.graphics.g2d.Animation<TextureRegion>(1/15f, atlas.findRegions("Ladder"));
+        /*anm = new com.badlogic.gdx.graphics.g2d.Animation<TextureRegion>(1 / 15f, region1);*/
 
         anm.setPlayMode(playMode);
 
@@ -53,7 +58,7 @@ public class Anim {
         anm.setPlayMode(playMode);
     }
     public void dispose(){
-        img.dispose();
+        atlas.dispose();
     }
 
 }

@@ -16,14 +16,16 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	Anim animation;
 	boolean dir = true;
-	float x;
+	private boolean lookRight = true;
+	private int animPositionX = 0;
 
 
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		animation = new Anim("ninja.jpg", 6, 3, Animation.PlayMode.LOOP);
+		/*animation = new Anim("ninja.jpg", 6, 3, Animation.PlayMode.LOOP);*/
+
 
 	}
 
@@ -42,8 +44,24 @@ public class MyGdxGame extends ApplicationAdapter {
 		if(Gdx.input.isKeyJustPressed(Input.Keys.L)) dir = true;
 		if(Gdx.input.isKeyJustPressed(Input.Keys.R)) dir = false;
 
-		if(!animation.getFrame().isFlipX() && !dir) animation.getFrame().flip(true,false);
-		if(animation.getFrame().isFlipX() && dir) animation.getFrame().flip(false,false);
+		if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) lookRight =false;
+		if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) lookRight = true;
+		if(animPositionX + 128 >= Gdx.graphics.getWidth()) lookRight = false;
+		if(animPositionX <= 0) lookRight = true;
+		if(!animation.getFrame().isFlipX() && !lookRight){
+			/*TextureRegion tmp = animation.getFrame();*/
+			animation.getFrame().flip(true, false);
+			int a = 0;
+		}
+		if(animation.getFrame().isFlipX() && lookRight) animation.getFrame().flip(true, false);
+		if(lookRight){
+		animPositionX =+ 1;
+		}else {
+			animPositionX -= 1;
+		}
+
+		/*if(!animation.getFrame().isFlipX() && !dir) animation.getFrame().flip(true,false);
+		if(animation.getFrame().isFlipX() && dir) animation.getFrame().flip(false,false);*/
 		batch.begin();
 
 		batch.draw(animation.getFrame(), 0, 0);
