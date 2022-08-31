@@ -26,7 +26,7 @@ public class MenuScreen implements Screen {
     public MenuScreen(Main game){
         this.game = game;
         batch = new SpriteBatch();
-        img = new Texture(""); //тут картинка
+        img = new Texture("koshachyaLapa.png"); //тут картинка
         startRect = new Rectangle(0, 0, img.getWidth(), img.getHeight());
         shapeRenderer = new ShapeRenderer();
 
@@ -39,12 +39,12 @@ public class MenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(Color.BROWN);
+        ScreenUtils.clear(Color.GRAY);
         batch.begin();
         batch.draw(img, 0, 0);
         batch.end();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        shapeRenderer.setColor(Color.GOLD);
+        shapeRenderer.setColor(Color.GREEN);
         shapeRenderer.rect(startRect.x, startRect.y, startRect.width, startRect.height);
         shapeRenderer.end();
 

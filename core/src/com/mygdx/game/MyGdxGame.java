@@ -24,7 +24,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		/*animation = new Anim("ninja.jpg", 6, 3, Animation.PlayMode.LOOP);*/
+		animation = new Anim("atlas/unnamed.png", 6, 3, Animation.PlayMode.LOOP);
 
 
 	}
